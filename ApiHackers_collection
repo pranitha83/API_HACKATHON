@@ -1,0 +1,5259 @@
+{
+	"info": {
+		"_postman_id": "92476d6b-8313-4f01-a8c2-36c7a6709b75",
+		"name": "Team 07 API Hackers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27908759",
+		"_collection_link": "https://grey-equinox-814119.postman.co/workspace/API-Hackathon~1d754120-1230-4911-a560-29a8669b9a1e/collection/28169630-92476d6b-8313-4f01-a8c2-36c7a6709b75?action=share&creator=27908759&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Program",
+			"item": [
+				{
+					"name": "Negative- in-vaild base url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/saveprogram",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"saveprogram"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invaild url , invaild end point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/savepro",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"savepro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save program",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const randIntBatch = Math.floor((Math.random()*100000 +1));\r",
+									"pm.globals.set(\"randIntBatch\", randIntBatch);\r",
+									"\r",
+									"var pn = \"SDET\"\r",
+									"var teamname = \"Jun23-ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"var proname = \"Jun23-ApiHackaers-SDET\"\r",
+									"pm.collectionVariables.set(\"programName1\",proname+ -+serialnumber);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									"// const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"\r",
+									"// if (statuscode==404) {\r",
+									"//     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"//     });\r",
+									"//  }\r",
+									"// else {\r",
+									"//      pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"//     });\r",
+									"// };\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"pm.environment.set(\"programId\",response.programId);\r",
+									"pm.environment.set(\"programName\",response.programName);\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\":\"{{programDescription}}\",\r\n  \"programName\": \"{{programName1}}\",\r\n  \"programStatus\": \"{{programStatus}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/saveprogram",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"saveprogram"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative invaild Base Url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"// const response = pm.response.text();\r",
+									"// const statuscode = pm.response.code;\r",
+									"// pm.expect(statuscode).to.equal(404);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/allprograms",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"allprograms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative invaild Base Url and end point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/allprogr",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"allprogr"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Programs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/allPrograms",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"allPrograms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative Invaild url and invaild user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/programs/{{programsid}}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"programs",
+								"{{programsid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative vaild base and invalid and invaild path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/progrs/{{progrmid}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"progrs",
+								"{{progrmid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Negative Vaild base and invaild user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/program/{{prgid}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"program",
+								"{{prgid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "one program id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/programs/{{programId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"programs",
+								"{{programId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "program name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//not allowing to update the program name. \r",
+									"// const response = pm.response.json();\r",
+									"// const statuscode =pm.response.code;\r",
+									"\r",
+									"// pm.environment.set(\"programId\",response.programId);\r",
+									"// pm.environment.set(\"programName\",response.programName);\r",
+									"\r",
+									"// if (statuscode==404) {\r",
+									"//     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"//     });\r",
+									"//  }\r",
+									"// else {\r",
+									"//      pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"//     });\r",
+									"// };\r",
+									"\r",
+									"\r",
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\":\"{{programDescription}}\",\r\n  \"programName\":\"{{programName}}{{$randomAlphaNumeric}}\",\r\n  \"programStatus\":\"{{programStatus}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/program/{{programName}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"program",
+								"{{programName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "program id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\":\"{{programDescription}}{{$randomAlphaNumeric}}\",\r\n  \"programId\":{{programId}},\r\n  \"programName\":\"{{programName}}\",\r\n  \"programStatus\":\"{{programStatus}}\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/putprogram/{{programId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"putprogram",
+								"{{programId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batch",
+			"item": [
+				{
+					"name": "NE create batch invalid url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const randIntBatch = Math.floor((Math.random()*100000 +1));",
+									"pm.globals.set(\"randIntBatch\", randIntBatch);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"batchName\": \"{{batchName}}{{randIntBatch}}\",\n    \"batchDescription\": \"{{batchDescription}}{{randIntBatch}}\",\n    \"batchStatus\": \"{{batchStatus}}\",\n    \"batchNoOfClasses\": {{batchNoOfClasses}},\n    \"programId\": \"{{programId}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/batches",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE create batch invalid end point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const randIntBatch = Math.floor((Math.random()*100000 +1));",
+									"pm.globals.set(\"randIntBatch\", randIntBatch);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"batchName\": \"{{batchName}}{{randIntBatch}}\",\n    \"batchDescription\": \"{{batchDescription}}{{randIntBatch}}\",\n    \"batchStatus\": \"{{batchStatus}}\",\n    \"batchNoOfClasses\": {{batchNoOfClasses}},\n    \"programId\": \"{{programId}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batch/{{batchId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batch",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const jsonData = pm.response.json();",
+									"// pm.globals.set(\"batchId\",jsonData.batchId);",
+									"// pm.globals.set(\"batchName1\",jsonData.batchName);",
+									"",
+									"//tests[\"verify batchName\"] = responseBody.has(data.batchName)",
+									"//tests[\"verify batchDescription\"] = responseBody.has(data[\"batchDescription\"])",
+									"//tests[\"verify batchStatus\"] = responseBody.has(data.batchStatus)",
+									"",
+									"const response = pm.response.json();",
+									"const statuscode =pm.response.code;",
+									"pm.environment.set(\"batchId\",response.batchId);",
+									"pm.environment.set(\"batchName\",response.batchName);",
+									"pm.environment.set(\"batchStatus\",response.batchStatus);",
+									"pm.environment.set(\"programId\",response.programId);",
+									"pm.environment.set(\"programName\",response.programName);",
+									"if (statuscode==400) {",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);",
+									"    });",
+									" }",
+									"else {",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);",
+									"    });",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const randIntBatch = Math.floor((Math.random()*100000 +1));",
+									"pm.globals.set(\"randIntBatch\", randIntBatch);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"batchName\": \"{{batchName}}{{randIntBatch}}\",\n    \"batchDescription\": \"{{batchDescription}}{{randIntBatch}}\",\n    \"batchStatus\": \"{{batchStatus}}\",\n    \"batchNoOfClasses\": {{batchNoOfClasses}},\n    \"programId\": \"{{programId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE All Batches invalidUrl",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/batches",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By ID invalid Url and path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Body matches string\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+									"// });\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									"// const statuscode =pm.response.code;\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/batches/batchId/status",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By invalid Name url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/batches/batchName/5",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"batches",
+								"batchName",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By invalid Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchName/@apihacka_on",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchName",
+								"@apihacka_on"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By invalid input",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchId/status",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By invalid Program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"check batch id present in the response body\", () =>{\r",
+									"//    var jsonData = pm.response.json();\r",
+									"//    pm.expect(jsonData.programId).to.eql(pm.environment.get(\"programId\"));\r",
+									"// });\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/program/{{programId}}/4",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"program",
+								"{{programId}}",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By ID non existing Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchId/999",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Batch By ID invalid Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchId/{{invalid Batch Id}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								"{{invalid Batch Id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Batches",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"//tests[\"verify batchName\"] = responseBody.has(data.batchName)\r",
+									"//tests[\"verify batchDescription\"] = responseBody.has(data[\"batchDescription\"])\r",
+									"//tests[\"verify batchStatus\"] = responseBody.has(data.batchStatus)\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchId/{{batchId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch By Program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"//tests[\"verify batchName\"] = responseBody.has(data.batchName)\r",
+									"//tests[\"verify batchDescription\"] = responseBody.has(data[\"batchDescription\"])\r",
+									"//tests[\"verify batchStatus\"] = responseBody.has(data.batchStatus)\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"if (statuscode==405) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/program/{{programId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"program",
+								"{{programId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Batch By Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/batchName/{{batchName_c}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"batchName",
+								"{{batchName_c}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update by batch id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const batchNameAppend = Math.floor((Math.random()*10000 +1));\r",
+									"pm.globals.set(\"randIntBatch\", batchNameAppend);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchDescription\":\"{{batchDescription}}-PUT update\",\r\n  \"batchId\":{{batchId}},\r\n  \"batchName\":\"{{batchName}}-PUT update{{randIntBatch}}\",\r\n  \"batchNoOfClasses\":{{batchNoOfClasses}},\r\n  \"batchStatus\":4,\r\n  \"programId\":{{programId}},\r\n  \"programName\":\"{{programName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/{{batchId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE update by batch id invalid url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const batchNameAppend = Math.floor((Math.random()*10000 +1));\r",
+									"pm.globals.set(\"randIntBatch\", batchNameAppend);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchDescription\":\"{{batchDescription}}\",\r\n  \"batchId\":{{batchId}},\r\n  \"batchName\":\"{{batchName}}{{randIntBatch}}\",\r\n  \"batchNoOfClasses\":{{batchNoOfClasses}},\r\n  \"batchStatus\":4,\r\n  \"programId\":{{programId}},\r\n  \"programName\":\"{{programName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/batches/{{batchId}}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"batches",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE update by batch id invalid endpoint",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const batchNameAppend = Math.floor((Math.random()*10000 +1));\r",
+									"pm.globals.set(\"randIntBatch\", batchNameAppend);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// const response = pm.response.json();\r",
+									"// const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"// if (statuscode==404) {\r",
+									"//     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"//     });\r",
+									"//  }\r",
+									"// else {\r",
+									"//      pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"//     });\r",
+									"// };\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchDescription\":\"{{batchDescription}}-PUT update\",\r\n  \"batchId\":{{batchId}},\r\n  \"batchName\":\"{{batchName}}-PUT update{{randIntBatch}}\",\r\n  \"batchNoOfClasses\":{{batchNoOfClasses}},\r\n  \"batchStatus\":4,\r\n  \"programId\":{{programId}},\r\n  \"programName\":\"{{programName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/batches/{{batchId}}status",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"batches",
+								"{{batchId}}status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Post create user with role(Data Driven) positive and negative scenarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,202]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.globals.set(\"createduserId\",jsonData.userId);\r",
+									"const userId = jsonData.userId;\r",
+									"console.log(userId);\r",
+									"\r",
+									" \r",
+									"const reqjason = JSON.parse(pm.request.body.raw);\r",
+									"pm.globals.set(reqjason.roleId);\r",
+									"pm.globals.set(reqjason.userRoleStatus);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{FirstName}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role with out body input",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role in invalid url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const response = pm.response.json();\r",
+									"// const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"// if (statuscode==404) {\r",
+									"//     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"//     });\r",
+									"//  }\r",
+									"// else {\r",
+									"//      pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"//         pm.expect(statuscode).to.be.oneOf([201,202]);\r",
+									"//     });\r",
+									"// };\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{teamname}}-{{serialnumber}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/roleStatus",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role in invalid url and empty body input",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/roleStatus",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role in invalid url and endpoint and empty body",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/use/users/",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role in invalid url and endpoint and valid body",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{teamname}}-{{serialnumber}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/use/users/",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role in valid url and invalid endpoint and valid body",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{teamname}}-{{serialnumber}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/use/users/",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role with valid Url and endpoint and without uniq phonenumber",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{teamname}}-{{serialnumber}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": 55556663330,\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role with valid Url and endpoint and without  phonenumber",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"console.log(pm.response);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{teamname}}-{{serialnumber}}\",\r\n\"userLastName\": \"{{Last-Name}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"{{Role-Id}}\",\r\n\"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n],\r\n\"userTimeZone\": \"{{Time-Zone}}\",\r\n\"userVisaStatus\": \"{{Visa-Status}}\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users using invalidUrl",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users using validUrl and Invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/user/users",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"user",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Useres using invalidUrl and endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/user",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User info by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/{{userId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "usreId",
+									"value": "U19",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User info by Id using Invalid Url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/U19",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"U19"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "U19",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User info by Invalid Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/19",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"19"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "U19",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users with roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roles",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users with roles  with invalid Url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/roles",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users with roles  with valid Url and invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/use/users/roles",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users with roles  with Invalid Url and  endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/use/users/roles",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Staff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/getAllStaff",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"getAllStaff"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-Update User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201,202]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"String\",\r\n  \"userEduPg\": \"String\",\r\n  \"userEduUg\": \"String\",\r\n  \"userFirstName\": \"{{FirstName}}\",\r\n  \"userId\": \"{{userId}}\",\r\n  \"userLastName\": \"{{$randomLastName}}\",\r\n  \"userLinkedinUrl\": \"String\",\r\n  \"userLocation\": \"String\",\r\n \r\n  \"userPhoneNumber\": 0,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H1B\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/{{createduserId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{createduserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-Update User  without mandetory fields",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201,202]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"String\",\r\n  \"userEduPg\": \"String\",\r\n  \"userEduUg\": \"String\",\r\n  \r\n  \"userId\": \"{{userId}}\",\r\n  \r\n  \"userLinkedinUrl\": \"String\",\r\n  \"userLocation\": \"String\",\r\n \r\n  \"userPhoneNumber\": 0  \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/{{createduserId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{createduserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-Update User  with invalid url",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201,202]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"String\",\r\n  \"userEduPg\": \"String\",\r\n  \"userEduUg\": \"String\",\r\n  \"userFirstName\": \"{{FirstName}}\",\r\n  \"userId\": \"{{userId}}\",\r\n  \"userLastName\": \"{{$randomLastName}}\",\r\n  \"userLinkedinUrl\": \"String\",\r\n  \"userLocation\": \"String\",\r\n \r\n  \"userPhoneNumber\": 0,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H1B\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/{{createduserId}}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{createduserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-Update User Role Status",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==404){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roleId\": \"{{Role-Id}}\",\r\n  \"userRoleStatus\": \"{{Role-Status}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus/{{createduserId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus",
+								"{{createduserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-Assign Update user role program batch status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==404){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\":1 ,\r\n  \"roleId\": \"R01\",\r\n  \"userId\": \"U1824\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 123,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleProgramBatchStatus/U1824",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleProgramBatchStatus",
+								"U1824"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all users with roles  with valid Url and invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/use/users/roles",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"use",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all users with roles  with invalid Url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/users/users/roles",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Users using invalidUrl  vaild end point",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/users/userid",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"users",
+								"userid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User info by Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404]);\r",
+									"    });\r",
+									" }\r",
+									"else if(statuscode==404){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201]);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/{{createduserId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{createduserId}}"
+							],
+							"query": [
+								{
+									"key": "usreId",
+									"value": "U19",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.text();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([200,201,202]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/users/users/{{createduserId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{createduserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assignment",
+			"item": [
+				{
+					"name": "Create Assignment invalid url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"//pm.collectionVariables.set(\"batchId\",response.batchId);\r",
+									"//pm.collectionVariables.set(\"batchName\",response.batchName);\r",
+									"//pm.collectionVariables.set(\"programId\",response.programId);\r",
+									"//pm.collectionVariables.set(\"programName\",response.programName);\r",
+									"\r",
+									"if (statuscode==404) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404]);\r",
+									"    });\r",
+									" }\r",
+									" else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var pn = \"SDET\"\r",
+									"var teamname = \"Jun23-ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"var proname = \"Jun23-ApiHackaers-SDET\"\r",
+									"pm.collectionVariables.set(\"assignmentname\",proname+ -+serialnumber);\r",
+									"\r",
+									"var assignmentdesc = \"Creating Assignment for Api Hackers\";\r",
+									"pm.collectionVariables.set(\"assignmentdesc\",assignmentdesc);\r",
+									"\r",
+									"var comments = \"Assignment created!\";\r",
+									"pm.collectionVariables.set(\"comments\",comments);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentdesc}}{{$randomAlphaNumeric}}\",\r\n  //\"assignmentId\":{{assignmentId}},\r\n  \"assignmentName\": \"{{assignmentName}}{{$randomInt}}\",\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"createdBy\": \"{{userId}}\",\r\n  \"dueDate\": \"2023-07-03T15:23:03.164+00:00\",\r\n  \"graderId\": \"{{userId}}\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{pathAttachment2}}\",\r\n  \"pathAttachment3\": \"{{pathAttachment3}}\",\r\n  \"pathAttachment4\": \"{{pathAttachment4}}\",\r\n  \"pathAttachment5\": \"{{pathAttachment5}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/assignments",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Assignment without mandatory fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"//pm.collectionVariables.set(\"batchId\",response.batchId);\r",
+									"//pm.collectionVariables.set(\"batchName\",response.batchName);\r",
+									"//pm.collectionVariables.set(\"programId\",response.programId);\r",
+									"//pm.collectionVariables.set(\"programName\",response.programName);\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400]);\r",
+									"    });\r",
+									" }\r",
+									" else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var pn = \"SDET\"\r",
+									"var teamname = \"Jun23-ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"var proname = \"Jun23-ApiHackaers-SDET\"\r",
+									"pm.collectionVariables.set(\"assignmentname\",proname+ -+serialnumber);\r",
+									"\r",
+									"var assignmentdesc = \"Creating Assignment for Api Hackers\";\r",
+									"pm.collectionVariables.set(\"assignmentdesc\",assignmentdesc);\r",
+									"\r",
+									"var comments = \"Assignment created!\";\r",
+									"pm.collectionVariables.set(\"comments\",comments);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentdesc}}{{$randomAlphaNumeric}}\",\r\n  //\"assignmentId\":{{assignmentId}},\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"dueDate\": \"2023-07-03T15:23:03.164+00:00\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{pathAttachment2}}\",\r\n  \"pathAttachment3\": \"{{pathAttachment3}}\",\r\n  \"pathAttachment4\": \"{{pathAttachment4}}\",\r\n  \"pathAttachment5\": \"{{pathAttachment5}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const response = pm.response.json();\r",
+									"pm.globals.set(\"assignmentIdn\",response.assignmentId);\r",
+									"pm.globals.set(\"duedate\",response.dueDate);\r",
+									"\r",
+									"console.log(response.assignmentId);\r",
+									"\r",
+									"// const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"//pm.collectionVariables.set(\"batchId\",response.batchId);\r",
+									"//pm.collectionVariables.set(\"batchName\",response.batchName);\r",
+									"//pm.collectionVariables.set(\"programId\",response.programId);\r",
+									"//pm.collectionVariables.set(\"programName\",response.programName);\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400]);\r",
+									"    });\r",
+									" }\r",
+									" else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var pn = \"SDET\"\r",
+									"var teamname = \"Jun23-ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"var proname = \"Jun23-ApiHackaers-SDET\"\r",
+									"pm.collectionVariables.set(\"assignmentname\",proname+ -+serialnumber);\r",
+									"\r",
+									"var assignmentdesc = \"Creating Assignment for Api Hackers\";\r",
+									"pm.collectionVariables.set(\"assignmentdesc\",assignmentdesc);\r",
+									"\r",
+									"var comments = \"Assignment created!\";\r",
+									"pm.collectionVariables.set(\"comments\",comments);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentdesc}}{{$randomAlphaNumeric}}\",\r\n  //\"assignmentId\":{{assignmentId}},\r\n  \"assignmentName\": \"{{assignmentname}}\",\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"createdBy\": \"{{userId}}\",\r\n  \"dueDate\": \"2023-06-30T15:23:03.164+00:00\",\r\n  \"graderId\": \"{{userId}}\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{pathAttachment2}}\",\r\n  \"pathAttachment3\": \"{{pathAttachment3}}\",\r\n  \"pathAttachment4\": \"{{pathAttachment4}}\",\r\n  \"pathAttachment5\": \"{{pathAttachment5}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/{{assignmentIdn}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assignmentIdn}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment by Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/batch/{{batchId_c}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								"{{batchId_c}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE All Assignment Invalid URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/Assignments",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"Assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE by ID Invalid URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/Assignments",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"Assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE All Assignment Invalid EndPoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/Assig",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"Assig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE By Invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/assignments/999999999",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"assignments",
+								"999999999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE By ID invalid Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assign",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Assignment for Invalid Batch ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/batch/{{invalid Batch Id}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								"{{invalid Batch Id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Assignment by Batch Invalid URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignments/batch/6586780",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								"6586780"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Assignment by Batch Invalid Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignments/batch/abd2",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								"abd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Assignment by Batch with no Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignments/batch",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignments",
+								"batch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Assignment by invalid Batch ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignments/batch/99999999999",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"batch",
+								"99999999999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentDescription}}\",\r\n  //\"assignmentId\": 0,\r\n  \"assignmentName\": \"{{assignmentName}}{{randIntBatch}}\",\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"createdBy\": \"{{userId}}\",\r\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\r\n  \"graderId\": \"{{userId}}\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment3\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment4\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment5\": \"{{$randomFilePath}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments/{{assignmentIdn}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assignmentIdn}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Assignment invalid url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var pn = \"SDET\"\r",
+									"var teamname = \"Jun23-ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"var proname = \"Jun23-ApiHackaers-SDET\"\r",
+									"pm.collectionVariables.set(\"assignmentname\",proname+ -+serialnumber);\r",
+									"\r",
+									"var assignmentdesc = \"Creating Assignment for Api Hackers\";\r",
+									"pm.collectionVariables.set(\"assignmentdesc\",assignmentdesc);\r",
+									"\r",
+									"var comments = \"Assignment created!\";\r",
+									"pm.collectionVariables.set(\"comments\",comments);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentdesc}}{{$randomAlphaNumeric}}\",\r\n  //\"assignmentId\": 0,\r\n  \"assignmentName\": \"{{assignmentName}}{{randIntBatch}}\",\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"createdBy\": \"{{userId}}\",\r\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\r\n  \"graderId\": \"{{userId}}\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment3\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment4\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment5\": \"{{$randomFilePath}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{InvalidUrl}}/assignments/{{assignmentIdn}}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assignmentIdn}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valid url invalid assignment id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentDescription}}\",\r\n  //\"assignmentId\": 0,\r\n  \"assignmentName\": \"{{assignmentName}}{{randIntBatch}}\",\r\n  \"batchId\": {{batchId}},\r\n  \"comments\": \"{{comments}}\",\r\n  \"createdBy\": \"{{userId}}\",\r\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\r\n  \"graderId\": \"{{userId}}\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment3\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment4\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment5\": \"{{$randomFilePath}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments/{{assi}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assi}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "valid url without mandatory fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"{{assignmentDescription}}\",\r\n  //\"assignmentId\": 0,\r\n  \"assignmentName\": \"{{assignmentName}}{{randIntBatch}}\",\r\n  \"comments\": \"{{comments}}\",\r\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\r\n  \"pathAttachment1\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment2\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment3\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment4\": \"{{$randomFilePath}}\",\r\n  \"pathAttachment5\": \"{{$randomFilePath}}\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments/{{assignmentIdn}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assignmentIdn}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Assignment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"assignmentDescription\": \"string\",\r\n  \"assignmentId\": 0,\r\n  \"assignmentName\": \"string\",\r\n  \"batchId\": 0,\r\n  \"comments\": \"string\",\r\n  \"createdBy\": \"string\",\r\n  \"dueDate\": \"2023-06-19T22:02:28.140Z\",\r\n  \"graderId\": \"string\",\r\n  \"pathAttachment1\": \"string\",\r\n  \"pathAttachment2\": \"string\",\r\n  \"pathAttachment3\": \"string\",\r\n  \"pathAttachment4\": \"string\",\r\n  \"pathAttachment5\": \"string\" \r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignments/{{assignmentIdn}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignments",
+								"{{assignmentIdn}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Submission",
+			"item": [
+				{
+					"name": "Submission Assignment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const dateNow= new Date.\r",
+									"// pm.environment.set('currentDate', dateNow.toISOString());\r",
+									"\r",
+									"\r",
+									"const date = new Date(); // Create a new Date object with the current date and time\r",
+									"\r",
+									"const options = {\r",
+									"  month: '2-digit', // 2-digit representation of the month (e.g., 01, 02, ..., 12)\r",
+									"  day: '2-digit', // 2-digit representation of the day (e.g., 01, 02, ..., 31)\r",
+									"  year: 'numeric', // 4-digit representation of the year (e.g., 2023)\r",
+									"  hour: '2-digit', // 2-digit representation of the hour in 24-hour format (e.g., 00, 01, ..., 23)\r",
+									"  minute: '2-digit', // 2-digit representation of the minute (e.g., 00, 01, ..., 59)\r",
+									"  second: '2-digit', // 2-digit representation of the second (e.g., 00, 01, ..., 59)\r",
+									"};\r",
+									"\r",
+									"const formattedDate = date.toLocaleString('en-US', options);\r",
+									"pm.environment.set('currentDate',formattedDate );\r",
+									"console.log(formattedDate); // Output: 06-28-2023 14:30:45\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.globals.set(\"submissionId\",jsonData.submissionId);\r",
+									"console.log(jsonData.assignmentId);\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400]);\r",
+									"    });\r",
+									" }\r",
+									" else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {  \r\n        \"assignmentId\":{{assignmentIdn}},\r\n        \"userId\": \"{{createdstudentId}}\",\r\n        \"subDesc\": \"submission\",\r\n        \"subComments\": \"completed\",\r\n        \"subPathAttach1\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach2\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach3\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach4\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach5\": \"{{$randomFilePath}}\",\r\n        \"subDateTime\": \"06-28-2023 15:23:03Z\",\r\n        \"gradedBy\": \"\",\r\n        \"gradedDateTime\": \"\",\r\n        \"grade\":-1\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submission Assignment Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const dateNow= new Date.\r",
+									"// pm.environment.set('currentDate', dateNow.toISOString());\r",
+									"\r",
+									"\r",
+									"const date = new Date(); // Create a new Date object with the current date and time\r",
+									"\r",
+									"const options = {\r",
+									"  month: '2-digit', // 2-digit representation of the month (e.g., 01, 02, ..., 12)\r",
+									"  day: '2-digit', // 2-digit representation of the day (e.g., 01, 02, ..., 31)\r",
+									"  year: 'numeric', // 4-digit representation of the year (e.g., 2023)\r",
+									"  hour: '2-digit', // 2-digit representation of the hour in 24-hour format (e.g., 00, 01, ..., 23)\r",
+									"  minute: '2-digit', // 2-digit representation of the minute (e.g., 00, 01, ..., 59)\r",
+									"  second: '2-digit', // 2-digit representation of the second (e.g., 00, 01, ..., 59)\r",
+									"};\r",
+									"\r",
+									"const formattedDate = date.toLocaleString('en-US', options);\r",
+									"pm.environment.set('currentDate',formattedDate );\r",
+									"console.log(formattedDate); // Output: 06-28-2023 14:30:45\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.globals.set(\"submissionId\",jsonData.submissionId);\r",
+									"console.log(jsonData.assignmentId);\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400]);\r",
+									"    });\r",
+									" }\r",
+									" else if(statuscode==500){\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([404,405,500]);\r",
+									"    });\r",
+									"}\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,200]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {  \r\n        \"assignmentId\":{{assignmentIdn}},\r\n        \"userId\": \"{{createdadminId}}\",\r\n        \"subDesc\": \"submission\",\r\n        \"subComments\": \"completed\",\r\n        \"subPathAttach1\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach2\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach3\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach4\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach5\": \"{{$randomFilePath}}\",\r\n        \"subDateTime\": \"06-29-2023 15:23:03Z\",\r\n        \"gradedBy\": \"\",\r\n        \"gradedDateTime\": \"\",\r\n        \"grade\":-1\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,202]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.globals.set(\"createdadminId\",jsonData.userId);\r",
+									"const userId = jsonData.userId;\r",
+									"console.log(userId);\r",
+									"\r",
+									" \r",
+									"const reqjason = JSON.parse(pm.request.body.raw);\r",
+									"pm.globals.set(reqjason.roleId);\r",
+									"pm.globals.set(reqjason.userRoleStatus);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{FirstName}}\",\r\n\"userLastName\": \"SDET-{{$randomLastName}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"R01\",\r\n\"userRoleStatus\": \"ROLE_ADMIN\"\r\n}\r\n],\r\n\"userTimeZone\": \"EST\",\r\n\"userVisaStatus\": \"US-Citizen\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post create user with role student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"const statuscode =pm.response.code;\r",
+									"\r",
+									"\r",
+									"if (statuscode==400) {\r",
+									"    pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([400,404,405,500]);\r",
+									"    });\r",
+									" }\r",
+									"else {\r",
+									"     pm.test(\"Status code is \"+statuscode+\" \"+pm.response.status,()=>{\r",
+									"        pm.expect(statuscode).to.be.oneOf([201,202]);\r",
+									"    });\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.globals.set(\"createdstudentId\",jsonData.userId);\r",
+									"const userId = jsonData.userId;\r",
+									"console.log(userId);\r",
+									"\r",
+									" \r",
+									"const reqjason = JSON.parse(pm.request.body.raw);\r",
+									"pm.globals.set(reqjason.roleId);\r",
+									"pm.globals.set(reqjason.userRoleStatus);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//FirstName = TeamName_serialNumber\r",
+									"var teamname = \"ApiHackaers\";\r",
+									"const serialnumber = Math.floor((Math.random()*100+1));\r",
+									"const phonenumber = Math.floor(Math.random()*1000000000);\r",
+									"pm.collectionVariables.set(\"teamname\",teamname);\r",
+									"pm.collectionVariables.set(\"serialnumber\",serialnumber);\r",
+									"pm.collectionVariables.set(\"phonenumber\",phonenumber);\r",
+									"\r",
+									"pm.collectionVariables.set(\"FirstName\",teamname+ - +serialnumber);\r",
+									"\r",
+									"\r",
+									"\r",
+									"//pm.collectionVariables.set(\"RoleId\",pm.iterationData.get(\"Role-Id\"));\r",
+									"//pm.collectionVariables.set()\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"{{FirstName}}\",\r\n\"userLastName\": \"SDET-{{$randomLastName}}\",\r\n\"userLinkedinUrl\": \"string\",\r\n\"userLocation\": \"string\",\r\n\"userMiddleName\": \"string\",\r\n\"userPhoneNumber\": {{phonenumber}},\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"R03\",\r\n\"userRoleStatus\": \"ROLE_STUDENT\"\r\n}\r\n],\r\n\"userTimeZone\": \"EST\",\r\n\"userVisaStatus\": \"US-Citizen\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/roleStatus",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"roleStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User info by Id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/users/users/{{userId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"users",
+								"users",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "usreId",
+									"value": "U19",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Submission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grades by Student ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/getGradesByStudentId/{{createdstudentId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGradesByStudentId",
+								"{{createdstudentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grades by Batch ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/getGradesByStudentId/{{batchId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGradesByStudentId",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get grades by assignment id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}//assignmentsubmission/getGrades/1819",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"",
+								"assignmentsubmission",
+								"getGrades",
+								"1819"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submission by User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/student/{{createdstudentId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"student",
+								"{{createdstudentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submission by Batch ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/studentbatch/{{batchId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"studentbatch",
+								"{{batchId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Invalid Submission ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submission by User ID Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/student/U20",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"student",
+								"U20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submission by User ID Copy 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/student/U20",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"student",
+								"U20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Invalid URL Assignment ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission/getGrades/{{assignmentId}}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGrades",
+								"{{assignmentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Grades by Student ID Invalid URL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission/getGradesByStudentId/{studentID}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGradesByStudentId",
+								"{studentID}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Grades by Student ID Invalid Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmissio",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmissio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Grades by Student ID non Existing Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/getGradesByStudentId/abcd",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGradesByStudentId",
+								"abcd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Grades by Student ID No Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/getGradesByStudentId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"getGradesByStudentId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE All Submission Invalid url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE All Submission Invalid Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}//assignmentsubmission/studentbatch/{{batchId}}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"",
+								"assignmentsubmission",
+								"studentbatch",
+								"{{batchId}}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by Batch ID Invalid url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission/studentbatch/{batchId}",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"studentbatch",
+								"{batchId}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by Batch ID Invalid endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/studentbatch",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"studentbatch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by Batch ID No endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/studentbatch",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"studentbatch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by Batch ID Non Existing Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/a",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by User ID Invalid URL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{InvalidUrl}}/assignmentsubmission/studentbatch/",
+							"host": [
+								"{{InvalidUrl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"studentbatch",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by User ID Invalid Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}// /assignmentsubmission/studentbatch/abc",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"",
+								" ",
+								"assignmentsubmission",
+								"studentbatch",
+								"abc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NE Submission by User ID No Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}// /assignmentsubmission/studentbatch/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"",
+								" ",
+								"assignmentsubmission",
+								"studentbatch",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resubmit Assignment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": {{assignmentIdn}},\r\n        \"userId\": \"{{createdstudentId}}\",\r\n        \"subDesc\": \"re submit assignment\",\r\n        \"subComments\": \"Resubmit assignment\",\r\n        \"subPathAttach1\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach2\": \"{{randomeFilePath}}\",\r\n        \"subPathAttach3\": \"{{randomeFilePath}}\",\r\n        \"subPathAttach4\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach5\": \"{{$randomFilePath}}\",\r\n        \"subDateTime\": \"06-28-2023 15:23:03Z\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"\",\r\n        \"grade\": -1\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/{{submissionId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"{{submissionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grade Assignment Submission",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": {{assignmentIdn}},\r\n        \"userId\": \"{{createdadminId}}\",\r\n        \"subDesc\": \"Updating the grade!\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach2\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach3\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach4\": \"{{$randomFilePath}}\",\r\n        \"subPathAttach5\": \"{{$randomFilePath}}\",\r\n        \"subDateTime\": \"06-28-2023 15:23:03Z\",\r\n        \"gradedBy\": \"\",\r\n        \"gradedDateTime\": \" \",\r\n        \"grade\":0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/gradesubmission/{{submissionId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"gradesubmission",
+								"{{submissionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grade Assignment Submission Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/{Id}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"{Id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE  invalid existing Assignment Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/assignmentsubmission/{Iwsd}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"assignmentsubmission",
+								"{Iwsd}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE with invalid Assignmentid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms/assignments/{invalidAssignmentID}",
+							"protocol": "https",
+							"host": [
+								"lms-api-hackathon-june2023-930a8b0f895d",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"assignments",
+								"{invalidAssignmentID}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE  with null Assignmentid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms/assignments/",
+							"protocol": "https",
+							"host": [
+								"lms-api-hackathon-june2023-930a8b0f895d",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"assignments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE nonexisting Assignmentid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms/assignments/123456",
+							"protocol": "https",
+							"host": [
+								"lms-api-hackathon-june2023-930a8b0f895d",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"assignments",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE  no Assignmentid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms/assignments",
+							"protocol": "https",
+							"host": [
+								"lms-api-hackathon-june2023-930a8b0f895d",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE with valid existing Assignment Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[    {\r\n        \"assignmentId\": 0,\r\n        \"userId\": \"string\",\r\n        \"subDesc\": \"string\",\r\n        \"subComments\": \"string\",\r\n        \"subPathAttach1\": \"string\",\r\n        \"subPathAttach2\": \"string\",\r\n        \"subPathAttach3\": \"String\",\r\n        \"subPathAttach4\": \"string\",\r\n        \"subPathAttach5\": \"string\",\r\n        \"subDateTime\": \"string\",\r\n        \"gradedBy\": 0,\r\n        \"gradedDateTime\": \"string\",\r\n        \"grade\": 0\r\n    }]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-api-hackathon-june2023-930a8b0f895d.herokuapp.com/lms/assignments/123456",
+							"protocol": "https",
+							"host": [
+								"lms-api-hackathon-june2023-930a8b0f895d",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"assignments",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "teamname",
+			"value": ""
+		},
+		{
+			"key": "serialnumber",
+			"value": ""
+		},
+		{
+			"key": "phonenumber",
+			"value": ""
+		},
+		{
+			"key": "FirstName",
+			"value": ""
+		},
+		{
+			"key": "assignmentname",
+			"value": ""
+		},
+		{
+			"key": "assignmentdesc",
+			"value": ""
+		},
+		{
+			"key": "comments",
+			"value": ""
+		},
+		{
+			"key": "programName1",
+			"value": ""
+		}
+	]
+}
